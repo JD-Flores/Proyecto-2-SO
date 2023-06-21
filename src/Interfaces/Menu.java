@@ -6,8 +6,11 @@
 package Interfaces;
 
 import Classes.Administrador;
+import Classes.Car;
 import Classes.Procesador;
+import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.Semaphore;
 
 /**
  *
@@ -18,24 +21,38 @@ public class Menu extends javax.swing.JFrame {
     private Administrador administrador;
     private Procesador ai;
     
-    private Queue cola1Bugatti;
-    private Queue cola2Bugatti;
-    private Queue cola3Bugatti;
-    private Queue colaRefuerzoBugatti;
+    private Queue<Car> cola1Bugatti;
+    private Queue<Car> cola2Bugatti;
+    private Queue<Car> cola3Bugatti;
+    private Queue<Car> colaRefuerzoBugatti;
     
-    private Queue cola1Lamborghini;
-    private Queue cola2Lamborghini;
-    private Queue cola3Lamborghini;
-    private Queue colaRefuerzoLamborghini;
-    
-    
+    private Queue<Car> cola1Lamborghini;
+    private Queue<Car> cola2Lamborghini;
+    private Queue<Car> cola3Lamborghini;
+    private Queue<Car> colaRefuerzoLamborghini;
+   
     public Menu() {
         initComponents();
         this.setTitle("Proyecto 2");
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.setResizable(false);       
+        this.setResizable(false);               
+
+        this.cola1Bugatti = new LinkedList<Car>();
+        this.cola2Bugatti = new LinkedList<Car>();
+        this.cola3Bugatti = new LinkedList<Car>();
+        this.colaRefuerzoBugatti = new LinkedList<Car>();
+
+        this.cola1Lamborghini = new LinkedList<Car>();
+        this.cola2Lamborghini = new LinkedList<Car>();
+        this.cola3Lamborghini = new LinkedList<Car>();
+        this.colaRefuerzoLamborghini = new LinkedList<Car>();
+
+        this.processingTime = 500;
         
+        this.ai = new Procesador(this.processingTime);
+        this.administrador = new Administrador(ai);
+        administrador.run();
     }
 
 
