@@ -27,7 +27,8 @@ public class Procesador extends Thread {
         } catch (InterruptedException ex) {
             Logger.getLogger(Procesador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Carrera: "+ Integer.toString(bugattiCar.getId()) +" vs "+ Integer.toString(lamborghiniCar.getId()));
+        System.out.println("Carrera: B"+ Integer.toString(bugattiCar.getId()) +" vs L"+ Integer.toString(lamborghiniCar.getId()));
+        System.out.println("    Calidad: "+ Integer.toString(bugattiCar.getOverallQuality()) +" vs "+ Integer.toString(lamborghiniCar.getOverallQuality()));
         
     }
 }

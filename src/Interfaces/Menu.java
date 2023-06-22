@@ -19,16 +19,6 @@ public class Menu extends javax.swing.JFrame {
     private int processingTime;
     private Administrador administrador;
     private Procesador ai;
-    
-    private Queue<Car> cola1Bugatti;
-    private Queue<Car> cola2Bugatti;
-    private Queue<Car> cola3Bugatti;
-    private Queue<Car> colaRefuerzoBugatti;
-    
-    private Queue<Car> cola1Lamborghini;
-    private Queue<Car> cola2Lamborghini;
-    private Queue<Car> cola3Lamborghini;
-    private Queue<Car> colaRefuerzoLamborghini;
    
     public Menu() {
         initComponents();
@@ -36,16 +26,6 @@ public class Menu extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //this.setVisible(true);
         this.setResizable(false);               
-
-        this.cola1Bugatti = new LinkedList<>();
-        this.cola2Bugatti = new LinkedList<>();
-        this.cola3Bugatti = new LinkedList<>();
-        this.colaRefuerzoBugatti = new LinkedList<>();
-
-        this.cola1Lamborghini = new LinkedList<>();
-        this.cola2Lamborghini = new LinkedList<>();
-        this.cola3Lamborghini = new LinkedList<>();
-        this.colaRefuerzoLamborghini = new LinkedList<>();
 
         this.processingTime = 500;
         
