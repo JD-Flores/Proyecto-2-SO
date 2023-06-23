@@ -57,7 +57,7 @@ public class Administrador extends Thread {
         */
         while (true) {
             try {
-                sleep(10);
+                sleep(100);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
