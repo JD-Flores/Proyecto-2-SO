@@ -63,7 +63,12 @@ public class Administrador extends Thread {
             }
             this.currentBugattiCar = createCar(availableId);
             this.currentLamborghiniCar = createCar(availableId);
-            //en realidad debe crear dos carros y mandarlos a las colas que les correspondan dependiendo de su calidad
+            /*en realidad debe crear dos carros y mandarlos a las colas que les correspondan dependiendo de su calidad
+                O sea, si carroCreado.overallQuality > 200, cola 1
+                else if carroCreado.overallQuality > 150, cola 2
+                etc
+                (valores de prueba, hay que probar los valores que hagan que se distribuyan entre las 3 colas)
+            */
             System.out.println("Administrador");
             
             //currentBugattiCar y currentLamborghiniCar deben ser carros extraidos de las colas 1 de ambas marcas
