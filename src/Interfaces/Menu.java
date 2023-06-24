@@ -25,7 +25,7 @@ public class Menu extends javax.swing.JFrame {
         this.setResizable(false);
     }
     
-    private int processingTime = 500;
+    private int processingTime = 1000;
     
     private Procesador ai = new Procesador(this.processingTime);
     private Administrador administrador = new Administrador(ai);
@@ -79,7 +79,6 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1080, 650));
         setMinimumSize(new java.awt.Dimension(1080, 650));
-        setPreferredSize(new java.awt.Dimension(1080, 650));
 
         jPanel2.setBackground(new java.awt.Color(215, 215, 215));
         jPanel2.setPreferredSize(new java.awt.Dimension(900, 700));
@@ -89,7 +88,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/bugatti/bugatti_eb110.png"))); // NOI18N
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Juan Diego\\Downloads\\rsz_1lambo_aventador.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lamborghini/lambo_murcielago.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -126,7 +125,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(134, 134, 134)
                 .addComponent(empezarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 146, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addComponent(bugattiIdLabel)
@@ -328,6 +327,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -363,9 +363,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_bugattiCola1TextFieldActionPerformed
 
     private void empezarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empezarButtonActionPerformed
-        this.setVisible(false);
-        //this.bugattiResultLabel.setForeground(Color.green);
-        administrador.run();        // TODO add your handling code here:
+        //this.setVisible(false);
+        this.bugattiResultLabel.setForeground(Color.green);
+        administrador.start();        // TODO add your handling code here:
     }//GEN-LAST:event_empezarButtonActionPerformed
 
     /**
@@ -407,7 +407,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel bugattiModeloLabel;
     private javax.swing.JLabel bugattiResultLabel;
     private javax.swing.JLabel bugattiVictoryCounterLabel;
-    private javax.swing.JLabel bugattiVictoryCounterLabel2;
     private javax.swing.JLabel bugattiVictoryCounterLabel3;
     private javax.swing.JButton empezarButton;
     private javax.swing.JLabel jLabel1;
@@ -420,13 +419,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JLabel lamboIdLabel;

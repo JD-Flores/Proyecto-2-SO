@@ -4,6 +4,8 @@
  */
 package Classes;
 
+import java.util.Random;
+
 /**
  *
  * @author Juan Diego
@@ -16,6 +18,8 @@ public class Car {
     private int motorQuality;
     private int ruedasQuality;
     private int overallQuality;
+    private int model;
+    private Random random = new Random();
     
     public Car (int id) {
         this.id = id;
@@ -45,6 +49,8 @@ public class Car {
         }  
 
         this.overallQuality = this.carroceriaQuality*60 + this.chasisQuality*50 + this.motorQuality*100 + this.ruedasQuality*80;
+        
+        model = random.nextInt(5) + 1;
 
     }
 
