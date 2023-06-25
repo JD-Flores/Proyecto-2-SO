@@ -211,7 +211,6 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(200, 200, 200));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Juan Diego\\Downloads\\proy2 resize\\bugatti_logo.png")); // NOI18N
         jLabel2.setText("Bugatti");
 
         jLabel7.setText("Victorias:");
@@ -274,8 +273,6 @@ public class Menu extends javax.swing.JFrame {
         jLabel17.setText("Victorias:");
 
         bugattiVictoryCounterLabel3.setText("0");
-
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Juan Diego\\Downloads\\proy2 resize\\lambo_logo.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);

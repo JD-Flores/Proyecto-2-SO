@@ -19,6 +19,8 @@ public class Administrador extends Thread {
     private int availableId;
     public Car currentBugattiCar;
     private Car currentLamborghiniCar;
+    public int BCarsCount;
+    public int LCarsCount;
 
     private Queue<Car> cola1Bugatti;
     private Queue<Car> cola2Bugatti;
@@ -43,11 +45,37 @@ public class Administrador extends Thread {
         this.cola2Lamborghini = new LinkedList<>();
         this.cola3Lamborghini = new LinkedList<>();
         this.colaRefuerzoLamborghini = new LinkedList<>();
+        
+        this.BCarsCount = 0;
+        this.LCarsCount = 0;
     }
     
-    public Car createCar(int id){
+    public void createBugattiCar(){
         availableId++;
-        return new Car(availableId);
+        Car car = new Car(availableId);
+        int quality = car.getOverallQuality();
+        if (quality >= 200) {
+            cola1Bugatti.add(car);
+        } else if (quality > 150 && quality < 200) {
+            cola2Bugatti.add(car);
+        } else {
+            cola3Bugatti.add(car);
+        }
+        BCarsCount++;
+    }
+    public void createLamborghiniCar(){
+        availableId++;
+        Car car = new Car(availableId);
+        int quality = car.getOverallQuality();
+        if (quality >= 200) {
+            cola1Lamborghini.add(car);
+        } else if (quality > 150 && quality < 200) {
+            cola2Lamborghini.add(car);
+        } else {
+            cola3Lamborghini.add(car);
+        }
+        LCarsCount++;
+        
     }
     
     @Override
@@ -55,14 +83,51 @@ public class Administrador extends Thread {
         /*
         Crear 10 carros antes de empezar
         */
+        int BCount = 0;
+        int LCount = 0;
+        
+        while (BCount<10) {
+            createBugattiCar();
+            BCount ++;
+        }
+        
+        while (LCount<10) {
+            createLamborghiniCar();
+            LCount ++;
+        }
+        
         while (true) {
             try {
                 sleep(100);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
-            this.currentBugattiCar = createCar(availableId);
-            this.currentLamborghiniCar = createCar(availableId);
+            System.out.println("B" + BCarsCount  + "L" + LCarsCount);
+            if (!cola1Bugatti.isEmpty()) {
+                currentBugattiCar = cola1Bugatti.remove();
+                BCarsCount --;
+            } else if (cola1Bugatti.isEmpty() && !cola2Bugatti.isEmpty()) {
+                currentBugattiCar = cola2Bugatti.remove();
+                BCarsCount --;
+            } else if (cola1Bugatti.isEmpty() && cola2Bugatti.isEmpty() && !cola3Bugatti.isEmpty()) {
+                currentBugattiCar = cola3Bugatti.remove();
+                BCarsCount --;
+            } else {
+                System.out.println("No hay más vehículos de Bugatti");
+            }
+            
+            if (!cola1Lamborghini.isEmpty()) {
+                currentLamborghiniCar = cola1Lamborghini.remove();
+                LCarsCount --;
+            } else if (cola1Lamborghini.isEmpty() && !cola2Lamborghini.isEmpty()) {
+                currentLamborghiniCar = cola2Lamborghini.remove();
+                LCarsCount --;
+            } else if (cola1Lamborghini.isEmpty() && cola2Lamborghini.isEmpty() && !cola3Lamborghini.isEmpty()) {
+                currentLamborghiniCar = cola3Lamborghini.remove();
+                LCarsCount --;
+            } else {
+                System.out.println("No hay más vehículos de Lamborghini");
+            }
             /*en realidad debe crear dos carros y mandarlos a las colas que les correspondan dependiendo de su calidad
                 O sea, si carroCreado.overallQuality > 200, cola 1
                 else if carroCreado.overallQuality > 150, cola 2

@@ -318,9 +318,6 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Juan Diego\Downloads\proy2 resize\bugatti_logo.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Bugatti"/>
           </Properties>
         </Component>
@@ -428,11 +425,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Juan Diego\Downloads\proy2 resize\lambo_logo.png"/>
-            </Property>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
