@@ -114,6 +114,7 @@ public class Administrador extends Thread {
                 BCarsCount --;
             } else {
                 System.out.println("No hay más vehículos de Bugatti");
+                currentBugattiCar = null;
             }
             
             if (!cola1Lamborghini.isEmpty()) {
@@ -127,6 +128,7 @@ public class Administrador extends Thread {
                 LCarsCount --;
             } else {
                 System.out.println("No hay más vehículos de Lamborghini");
+                currentLamborghiniCar = null;
             }
             /*en realidad debe crear dos carros y mandarlos a las colas que les correspondan dependiendo de su calidad
                 O sea, si carroCreado.overallQuality > 200, cola 1
@@ -137,7 +139,11 @@ public class Administrador extends Thread {
             System.out.println("Administrador");
             
             //currentBugattiCar y currentLamborghiniCar deben ser carros extraidos de las colas 1 de ambas marcas
-            this.ai.race(currentBugattiCar, currentLamborghiniCar);
+            if (currentBugattiCar != null && currentLamborghiniCar != null) {
+                this.ai.race(currentBugattiCar, currentLamborghiniCar);
+            } else {
+                System.out.println("No hay suficientes carros para testear");
+            }
         }
     }
 
