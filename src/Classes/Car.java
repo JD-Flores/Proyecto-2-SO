@@ -19,6 +19,7 @@ public class Car {
     private int ruedasQuality;
     private int overallQuality;
     private int model;
+    private int waitCount;
     private Random random = new Random();
     
     public Car (int id) {
@@ -51,6 +52,8 @@ public class Car {
         this.overallQuality = this.carroceriaQuality*60 + this.chasisQuality*50 + this.motorQuality*100 + this.ruedasQuality*80;
         
         model = random.nextInt(5) + 1;
+        
+        this.waitCount = 0;
 
     }
 
@@ -60,6 +63,18 @@ public class Car {
 
     public int getOverallQuality() {
         return overallQuality;
+    }
+    
+    public int getWaitCount() {
+        return waitCount;
+    }
+    
+    public void raiseWaitCount(){
+        waitCount++;
+    }
+    
+    public void resetWaitCount() {
+        waitCount = 0;
     }
     
 }

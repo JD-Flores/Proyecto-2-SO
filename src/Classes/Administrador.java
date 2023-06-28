@@ -21,6 +21,7 @@ public class Administrador extends Thread {
     private Car currentLamborghiniCar;
     public int BCarsCount;
     public int LCarsCount;
+    public int VCount;
 
     private Queue<Car> cola1Bugatti;
     private Queue<Car> cola2Bugatti;
@@ -48,6 +49,7 @@ public class Administrador extends Thread {
         
         this.BCarsCount = 0;
         this.LCarsCount = 0;
+        this.VCount = 0;
     }
     
     public void createBugattiCar(){
@@ -77,6 +79,74 @@ public class Administrador extends Thread {
         LCarsCount++;
         
     }
+    public void raiseVehicleCount(){
+        
+        for (int i = 0; i<cola1Bugatti.size(); i++) {
+            Car car = cola1Bugatti.poll();
+            car.raiseWaitCount();
+            if(car.getWaitCount()==8){
+                car.resetWaitCount();
+            } else {
+                cola1Bugatti.add(car);
+            }
+        }
+        
+        for (int i = 0; i<cola2Bugatti.size(); i++) {
+            Car car = cola2Bugatti.poll();
+            car.raiseWaitCount();
+            if(car.getWaitCount()==8){
+                car.resetWaitCount();
+                cola1Bugatti.add(car);
+            } else {
+                cola2Bugatti.add(car);
+            }
+        }
+        
+        for (int i = 0; i<cola3Bugatti.size(); i++) {
+            Car car = cola3Bugatti.poll();
+            car.raiseWaitCount();
+            if(car.getWaitCount()==8){
+                car.resetWaitCount();
+                cola2Bugatti.add(car);
+            } else {
+                cola3Bugatti.add(car);
+            }
+        }
+        
+        for (int i = 0; i<cola1Lamborghini.size(); i++) {
+            Car car = cola1Lamborghini.poll();
+            car.raiseWaitCount();
+            if(car.getWaitCount()==8){
+                car.resetWaitCount();
+            } else {
+                cola1Lamborghini.add(car);
+            }
+        }
+        
+        for (int i = 0; i<cola2Lamborghini.size(); i++) {
+            Car car = cola2Lamborghini.poll();
+            car.raiseWaitCount();
+            if(car.getWaitCount()==8){
+                car.resetWaitCount();
+                cola1Lamborghini.add(car);
+            } else {
+                cola2Lamborghini.add(car);
+            }
+        }
+        
+        for (int i = 0; i<cola3Lamborghini.size(); i++) {
+            Car car = cola3Lamborghini.poll();
+            car.raiseWaitCount();
+            if(car.getWaitCount()==8){
+                car.resetWaitCount();
+                cola2Lamborghini.add(car);
+            } else {
+                cola3Lamborghini.add(car);
+            }
+        }
+        
+
+    }
     
     @Override
     public void run() {
@@ -88,12 +158,12 @@ public class Administrador extends Thread {
         
         while (BCount<10) {
             createBugattiCar();
-            BCount ++;
+            BCount++;
         }
         
         while (LCount<10) {
             createLamborghiniCar();
-            LCount ++;
+            LCount++;
         }
         
         while (true) {
@@ -105,13 +175,11 @@ public class Administrador extends Thread {
             System.out.println("B" + BCarsCount  + "L" + LCarsCount);
             if (!cola1Bugatti.isEmpty()) {
                 currentBugattiCar = cola1Bugatti.remove();
-                BCarsCount --;
             } else if (cola1Bugatti.isEmpty() && !cola2Bugatti.isEmpty()) {
                 currentBugattiCar = cola2Bugatti.remove();
-                BCarsCount --;
             } else if (cola1Bugatti.isEmpty() && cola2Bugatti.isEmpty() && !cola3Bugatti.isEmpty()) {
                 currentBugattiCar = cola3Bugatti.remove();
-                BCarsCount --;
+
             } else {
                 System.out.println("No hay más vehículos de Bugatti");
                 currentBugattiCar = null;
@@ -119,13 +187,10 @@ public class Administrador extends Thread {
             
             if (!cola1Lamborghini.isEmpty()) {
                 currentLamborghiniCar = cola1Lamborghini.remove();
-                LCarsCount --;
             } else if (cola1Lamborghini.isEmpty() && !cola2Lamborghini.isEmpty()) {
                 currentLamborghiniCar = cola2Lamborghini.remove();
-                LCarsCount --;
             } else if (cola1Lamborghini.isEmpty() && cola2Lamborghini.isEmpty() && !cola3Lamborghini.isEmpty()) {
                 currentLamborghiniCar = cola3Lamborghini.remove();
-                LCarsCount --;
             } else {
                 System.out.println("No hay más vehículos de Lamborghini");
                 currentLamborghiniCar = null;
@@ -139,8 +204,18 @@ public class Administrador extends Thread {
             System.out.println("Administrador");
             
             //currentBugattiCar y currentLamborghiniCar deben ser carros extraidos de las colas 1 de ambas marcas
+            VCount ++;
+            if(VCount == 2) {
+                VCount = 0;
+                createBugattiCar();
+                createLamborghiniCar();
+
+                System.out.println("Se insertaron 2 carros");
+            }
             if (currentBugattiCar != null && currentLamborghiniCar != null) {
                 this.ai.race(currentBugattiCar, currentLamborghiniCar);
+                raiseVehicleCount();
+                
             } else {
                 System.out.println("No hay suficientes carros para testear");
             }
