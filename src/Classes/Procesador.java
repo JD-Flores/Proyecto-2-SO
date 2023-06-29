@@ -46,7 +46,7 @@ public class Procesador extends Thread {
         }
     }
     
-    public void race(Car bugattiCar, Car lamborghiniCar){
+    public Car race(Car bugattiCar, Car lamborghiniCar){
         try {
             sleep(processingTime);
         } catch (InterruptedException ex) {
@@ -57,11 +57,21 @@ public class Procesador extends Thread {
         
         raceResult = Math.random()*100;
         if (raceResult>=60){
+            bugattiCar.state = "racing";
+            lamborghiniCar.state = "racing";
             winner = chooseWinner(bugattiCar, lamborghiniCar);
+            winner.state = "winner";
+            return winner;
         } else if (raceResult >=33) {
+            bugattiCar.state = "tie";
+            lamborghiniCar.state = "tie";
             System.out.println("    Empate");
+            return bugattiCar;
         } else {
+            bugattiCar.state = "repair";
+            lamborghiniCar.state = "repair";
             System.out.println("    No se puede llevar a cabo la carrera");
+            return bugattiCar;
         }
     }
 }

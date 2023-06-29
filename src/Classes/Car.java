@@ -20,10 +20,13 @@ public class Car {
     private int overallQuality;
     private int model;
     private int waitCount;
+    public String state;
+    public String company;
     private Random random = new Random();
     
     public Car (int id) {
         this.id = id;
+        this.state = "waiting";
 
         if (Math.random()*100>=40) {
             this.carroceriaQuality = 1;
@@ -77,4 +80,7 @@ public class Car {
         waitCount = 0;
     }
     
+    public String getState(){
+        return state;
+    }
 }
