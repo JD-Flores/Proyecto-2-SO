@@ -83,4 +83,25 @@ public class Car {
     public String getState(){
         return state;
     }
+
+    public int getCarroceriaQuality() {
+        return carroceriaQuality;
+    }
+
+    public int getChasisQuality() {
+        return chasisQuality;
+    }
+
+    public int getMotorQuality() {
+        return motorQuality;
+    }
+
+    public int getRuedasQuality() {
+        return ruedasQuality;
+    }
+
+    public int getModel() {
+        return model;
+    }
+    
 }
