@@ -32,22 +32,16 @@ public class Procesador extends Thread {
         // Se elige el ganador dependiendo de su calidad total. Si tienen la misma
         // calidad, se elige al azar
         bugattiRaceTimeInSeconds = calculateRaceTime(bugattiCar);
-        System.out.println("B" + bugattiCar.getId() + " tiempo: " + stringTime(bugattiRaceTimeInSeconds));
         lamborghiniRaceTimeInSeconds = calculateRaceTime(lamborghiniCar);
-        System.out.println("L" + lamborghiniCar.getId() + " tiempo: " + stringTime(lamborghiniRaceTimeInSeconds));
 
         if (bugattiRaceTimeInSeconds < lamborghiniRaceTimeInSeconds) {
-            System.out.println("    Ganador: B" + Integer.toString(bugattiCar.getId()));
             return bugattiCar;
         } else if (bugattiRaceTimeInSeconds > lamborghiniRaceTimeInSeconds) {
-            System.out.println("    Ganador: L" + Integer.toString(lamborghiniCar.getId()));
             return lamborghiniCar;
         } else {
             if (random.nextBoolean()) {
-                System.out.println("    Ganador: B" + Integer.toString(bugattiCar.getId()));
                 return bugattiCar;
             } else {
-                System.out.println("    Ganador: L" + Integer.toString(lamborghiniCar.getId()));
                 return lamborghiniCar;
             }
         }
@@ -78,10 +72,7 @@ public class Procesador extends Thread {
         } catch (InterruptedException ex) {
             Logger.getLogger(Procesador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Carrera: B" + Integer.toString(bugattiCar.getId()) + " vs L"
-                + Integer.toString(lamborghiniCar.getId()));
-        System.out.println("    Calidad: " + Integer.toString(bugattiCar.getOverallQuality()) + " vs "
-                + Integer.toString(lamborghiniCar.getOverallQuality()));
+
 
         raceResult = random.nextInt(100);
         if (raceResult >= 60) {
@@ -114,13 +105,11 @@ public class Procesador extends Thread {
             lamborghiniCar.state = "tie";
             bugattiRaceTimeInSeconds = random.nextInt(260) + 150;
             lamborghiniRaceTimeInSeconds = bugattiRaceTimeInSeconds;
-            System.out.println("    Empate: " + stringTime(bugattiRaceTimeInSeconds));
             state = "Mostrando Resultados";
             return bugattiCar;
         } else {
             bugattiCar.state = "repair";
             lamborghiniCar.state = "repair";
-            System.out.println("    No se puede llevar a cabo la carrera");
             state = "Mostrando Resultados";
             return bugattiCar;
         }

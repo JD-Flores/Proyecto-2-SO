@@ -229,7 +229,6 @@ public class Administrador extends Thread {
             cola3BugattiText = cola3BugattiText.substring(Integer.toString(currentBugattiCar.getId()).length() + 3);
 
         } else {
-            System.out.println("No hay más vehículos de Bugatti");
             currentBugattiCar = null;
         }
 
@@ -250,7 +249,6 @@ public class Administrador extends Thread {
                     .substring(Integer.toString(currentLamborghiniCar.getId()).length() + 3);
 
         } else {
-            System.out.println("No hay más vehículos de Lamborghini");
             currentLamborghiniCar = null;
         }
     }
@@ -262,7 +260,6 @@ public class Administrador extends Thread {
             createBugattiCar();
             createLamborghiniCar();
 
-            System.out.println("Se insertaron 2 carros");
         }
     }
 
@@ -304,7 +301,6 @@ public class Administrador extends Thread {
 
                 escogerCarros();
 
-                System.out.println("Administrador");
 
                 crearCarros();
 
@@ -351,8 +347,12 @@ public class Administrador extends Thread {
                     this.ai.state = "Esperando";
 
                 } else {
-                    System.out.println("No hay suficientes carros para testear");
                 }
+            }
+            try {
+                sleep(100);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
