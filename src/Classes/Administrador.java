@@ -126,7 +126,7 @@ public class Administrador extends Thread {
                 car.resetWaitCount();
                 cola1Bugatti.add(car);
                 cola2BugattiText = cola2BugattiText.substring(Integer.toString(car.getId()).length() + 3);
-                
+
                 cola1BugattiText = cola1BugattiText + " B" + car.getId() + " ";
             } else {
                 cola2Bugatti.add(car);
@@ -140,7 +140,7 @@ public class Administrador extends Thread {
                 car.resetWaitCount();
                 cola2Bugatti.add(car);
                 cola3BugattiText = cola3BugattiText.substring(Integer.toString(car.getId()).length() + 3);
-                
+
                 cola2BugattiText = cola2BugattiText + " B" + car.getId() + " ";
             } else {
                 cola3Bugatti.add(car);
@@ -164,7 +164,7 @@ public class Administrador extends Thread {
                 car.resetWaitCount();
                 cola1Lamborghini.add(car);
                 cola2LamborghiniText = cola2LamborghiniText.substring(Integer.toString(car.getId()).length() + 3);
-                
+
                 cola1LamborghiniText = cola1LamborghiniText + " L" + car.getId() + " ";
             } else {
                 cola2Lamborghini.add(car);
@@ -178,7 +178,7 @@ public class Administrador extends Thread {
                 car.resetWaitCount();
                 cola2Lamborghini.add(car);
                 cola3LamborghiniText = cola3LamborghiniText.substring(Integer.toString(car.getId()).length() + 3);
-                
+
                 cola2LamborghiniText = cola2LamborghiniText + " L" + car.getId() + " ";
             } else {
                 cola3Lamborghini.add(car);
@@ -313,11 +313,12 @@ public class Administrador extends Thread {
                 if (currentBugattiCar != null && currentLamborghiniCar != null) {
 
                     result = this.ai.race(currentBugattiCar, currentLamborghiniCar);
+                    this.ai.state = "Mostrando resultados";
                     try {
-                            sleep(3000);
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        sleep(3000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     raiseVehicleCount();
 
                     if (result.state.equals("winner")) {
@@ -347,7 +348,8 @@ public class Administrador extends Thread {
                     } else {
                         System.out.println("Se ha producido un error en la carrera");
                     }
-                    
+                    this.ai.state = "Esperando";
+
                 } else {
                     System.out.println("No hay suficientes carros para testear");
                 }
