@@ -36,10 +36,10 @@ public class Procesador extends Thread {
         System.out.println("L"+lamborghiniCar.getId()+" tiempo: "+ stringTime(lamborghiniRaceTimeInSeconds));
         
         
-        if (bugattiRaceTimeInSeconds>lamborghiniRaceTimeInSeconds) {
+        if (bugattiRaceTimeInSeconds<lamborghiniRaceTimeInSeconds) {
             System.out.println("    Ganador: B"+ Integer.toString(bugattiCar.getId()));
             return bugattiCar;
-        } else if (bugattiRaceTimeInSeconds<lamborghiniRaceTimeInSeconds) {
+        } else if (bugattiRaceTimeInSeconds>lamborghiniRaceTimeInSeconds) {
             System.out.println("    Ganador: L"+ Integer.toString(lamborghiniCar.getId()));
             return lamborghiniCar;
         } else {
@@ -83,12 +83,23 @@ public class Procesador extends Thread {
         System.out.println("Carrera: B"+ Integer.toString(bugattiCar.getId()) +" vs L"+ Integer.toString(lamborghiniCar.getId()));
         System.out.println("    Calidad: "+ Integer.toString(bugattiCar.getOverallQuality()) +" vs "+ Integer.toString(lamborghiniCar.getOverallQuality()));
         
-        raceResult = Math.random()*100;
+        raceResult = random.nextInt(100);
         if (raceResult>=60){
             bugattiCar.state = "racing";
             lamborghiniCar.state = "racing";
+            try {
+                sleep(2000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Procesador.class.getName()).log(Level.SEVERE, null, ex);
+            }
             winner = chooseWinner(bugattiCar, lamborghiniCar);
-            winner.state = "winner";
+            if (winner == bugattiCar) {
+                bugattiCar.state = "winner";
+                lamborghiniCar.state = "loser";
+            } else {
+                bugattiCar.state = "loser";
+                lamborghiniCar.state = "winner";
+            }
             return winner;
         } else if (raceResult >=33) {
             bugattiCar.state = "tie";
@@ -104,4 +115,14 @@ public class Procesador extends Thread {
             return bugattiCar;
         }
     }
+
+    public int getBugattiRaceTimeInSeconds() {
+        return bugattiRaceTimeInSeconds;
+    }
+
+    public int getLamborghiniRaceTimeInSeconds() {
+        return lamborghiniRaceTimeInSeconds;
+    }
+    
+    
 }

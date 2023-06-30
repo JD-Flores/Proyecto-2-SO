@@ -24,6 +24,8 @@ public class Car {
     public String company;
     private Random random = new Random();
     
+    private Car nextCar;
+    
     public Car (int id) {
         this.id = id;
         this.state = "waiting";
@@ -54,7 +56,7 @@ public class Car {
 
         this.overallQuality = this.carroceriaQuality*60 + this.chasisQuality*50 + this.motorQuality*100 + this.ruedasQuality*80;
         
-        model = random.nextInt(5) + 1;
+        this.model = random.nextInt(5) + 1;
         
         this.waitCount = 0;
 
@@ -103,5 +105,14 @@ public class Car {
     public int getModel() {
         return model;
     }
+
+    public Car getNextCar() {
+        return nextCar;
+    }
+
+    public void setNextCar(Car nextCar) {
+        this.nextCar = nextCar;
+    }
+    
     
 }
